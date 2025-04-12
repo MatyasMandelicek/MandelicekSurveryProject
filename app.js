@@ -77,12 +77,34 @@ document.getElementById("submitBtn").onclick = () => {
   const q1 = document.querySelector("input[name=q1]:checked")?.value;
   const q2 = Array.from(document.querySelectorAll("input[name=q2]:checked")).map(cb => cb.value);
   const q3 = document.querySelector("input[name=q3]:checked")?.value;
+  const q4Visible = q4Wrapper.style.display === "block";
   const q4 = document.querySelector("input[name=q4]:checked")?.value || null;
 
   if (!q1 || q2.length === 0 || !q3 || (q4Wrapper.style.display === "block" && !q4)) {
     alert("Please answer all required questions.");
     return;
   }
+
+//validace
+if (!q1) {
+  alert("Please select an option for question 1.");
+  return;
+}
+
+if (q2.length === 0) {
+  alert("Please select at least one option for question 2.");
+  return;
+}
+
+if (!q3) {
+  alert("Please select an option for question 3.");
+  return;
+}
+
+if (q4Visible && !q4) {
+  alert("Please select an option for question 4.");
+  return;
+}
 
   const data = { q1, q2, q3, q4 };
 
